@@ -1,4 +1,4 @@
 class EventSerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
+  attributes :name, :rules
 end
