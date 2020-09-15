@@ -14,19 +14,11 @@ class Api::V1::EventsController < ApplicationController
         end
     end
 
-    def show 
-        event = Event.find_by(id: params[:id])
-        if event
-            render json: EventSerializer.new(event), status: :accepted
-        else
-            render json: {errors: event.errors.full_messages}, status: :unprocessible_entity
-        end
-    end
 
     private 
 
     def event_params 
-        params.require(:event).permit(:name, :rules)
+        params.require(:event).permit(:name, :rules, :pin)
     end
 
 
