@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
 
     def index
-        users = User.all
+        users = User.find_by(event_id: params[:event_id])
         render json: UserSerializer.new(users)
     end
 
