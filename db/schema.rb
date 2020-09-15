@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_173506) do
+ActiveRecord::Schema.define(version: 2020_09_15_220800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,20 @@ ActiveRecord::Schema.define(version: 2020_09_15_173506) do
     t.integer "pin"
   end
 
+  create_table "items", force: :cascade do |t|
+    t.string "title"
+    t.string "size"
+    t.text "notes"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.bigint "event_id", null: false
     t.index ["event_id"], name: "index_users_on_event_id"
   end
 
+  add_foreign_key "items", "users"
   add_foreign_key "users", "events"
 end
