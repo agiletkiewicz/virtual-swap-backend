@@ -1,12 +1,13 @@
 class Api::V1::UsersController < ApplicationController
 
     def index
-        users = User.find_by(event_id: params[:event_id])
+        users = User.where(event_id: params[:event_id])
         render json: UserSerializer.new(users)
     end
 
     def create
-        user = User.new(user_params)
+        event = Event.find_by(id: params[:event_id])
+        user = event.users.build(user_params)
         if user.save 
             render json: UserSerializer.new(user), status: :accepted
         else
