@@ -16,7 +16,7 @@ class Api::V1::EventsController < ApplicationController
 
     def show
         event = Event.find_by(id: params[:id])
-        options = {include: [:users, :items]}
+        options = {include: [:users, :items, :takes]}
         render json: EventSerializer.new(event, options)
     end
 
