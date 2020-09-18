@@ -10,6 +10,7 @@ class Api::V1::EventsController < ApplicationController
         if event.save 
             render json: EventSerializer.new(event), status: :accepted
         else
+            event.save!
             render json: {errors: event.errors.full_messages}, status: :unprocessible_entity
         end
     end
