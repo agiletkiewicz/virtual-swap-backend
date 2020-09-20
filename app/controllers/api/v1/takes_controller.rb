@@ -12,6 +12,7 @@ class Api::V1::TakesController < ApplicationController
     def destroy
         take = Take.find_by(id: params[:id])
         take.destroy
+        render json: {message: "success"}, status: :accepted
     end
 
     def take_params 
