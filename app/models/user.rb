@@ -4,4 +4,5 @@ class User < ApplicationRecord
     has_many :takes, dependent: :destroy
 
     validates :name, :uniqueness => { :scope => :event }
+    validates :name, presence: true
 end

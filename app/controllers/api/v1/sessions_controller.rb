@@ -5,7 +5,7 @@ class Api::V1::SessionsController < ApplicationController
         if event && event.pin == params[:pin]
             redirect_to api_v1_event_path(event)
         else
-            render json: {errors: event.errors.full_messages}, status: :unprocessible_entity
+            render json: {message: "Incorrect event pin."}
         end
     end
 

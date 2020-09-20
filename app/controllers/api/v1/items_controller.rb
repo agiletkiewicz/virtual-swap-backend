@@ -7,7 +7,8 @@ class Api::V1::ItemsController < ApplicationController
             # render json: ItemSerializer.new(item), status: :accepted
             render json: item, status: :accepted
         else
-            render json: {errors: item.errors.full_messages}, status: :unprocessible_entity
+            item.save
+            render json: {errors: item.errors.full_messages}
         end
     end
 
