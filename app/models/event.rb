@@ -5,6 +5,8 @@ class Event < ApplicationRecord
 
     validates :name, :rules, presence: true
     validates_uniqueness_of :name
-    validates :pin, length: { is: 6 }
-    validates_numericality_of :pin
+    # validates :password, length: { is: 6 }
+    # validates_numericality_of :password
+
+    has_secure_password
 end
